@@ -6,7 +6,7 @@ public abstract class AudioPlayer {
     /** List of songs to be played after the current song */
     private Queue<Song> queue;
     /** The song that is currently playing */
-    private Song nowPlaying;
+    private Song currentSong;
 
     private int savedTime;
     /** List of songs that have been previously played */
@@ -17,12 +17,12 @@ public abstract class AudioPlayer {
 
 
     /** Plays the current song starting at the saved timestamp */
-    private void play(){
+    public void play(){
 
     }
 
     /** Pauses the current song */
-    private void pause(){
+    public void pause(){
         
     }
 

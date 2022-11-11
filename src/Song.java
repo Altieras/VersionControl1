@@ -3,7 +3,7 @@ import java.io.File;
 public class Song {
     
     /** Loads a file to play audio from
-     * @throws FileFormatException if the file is an improper audio format
+     * @throws Exception if the file has an improper audio format
      */
     public Song(File f){
         
@@ -29,7 +29,7 @@ public class Song {
     }
 
     /**
-     * @return the namev of the song
+     * @return the name of the song
      */
     public String getName(){
         return null;

@@ -1,12 +1,16 @@
 import java.io.File;
+import java.net.URI;
 
 public class Song {
+
+    /** The URI of the source file */
+    private URI source;
     
     /** Loads a file to play audio from
      * @throws Exception if the file has an improper audio format
      */
     public Song(File f){
-        
+
     }
 
     /** Plays the file at the designated starting time 

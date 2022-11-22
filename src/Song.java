@@ -1,5 +1,6 @@
 import java.io.File;
 import java.net.URI;
+import java.net.URISyntaxException;
 
 public class Song {
 
@@ -11,6 +12,15 @@ public class Song {
      */
     public Song(File f){
 
+    }
+
+    /** Loads a song from a file path string */
+    public Song(String path){
+        try {
+            source = new URI(path);
+        } catch (URISyntaxException e){
+            System.out.println("Unable to parse "+path+" to valid URI");
+        }
     }
 
     /** Plays the file at the designated starting time 
@@ -44,5 +54,9 @@ public class Song {
      */
     public int getDuration(){
         return 0;
+    }
+
+    public URI getUri(){
+        return source;
     }
 }

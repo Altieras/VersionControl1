@@ -1,0 +1,13 @@
+.root {
+    -fx-background-color:"271349";
+}
+
+#center {
+    -fx-fill:"40414d";
+}
+
+#nowPlayingLabel {
+    -fx-font-size:20;
+    -fx-font-family:"Lucida Bright";
+    -fx-text-fill: "d17d00"
+}

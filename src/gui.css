@@ -6,8 +6,15 @@
     -fx-fill:"40414d";
 }
 
+.label {
+    -fx-font-family:"Lucida Bright";
+    -fx-text-fill:"ffffff";
+    -fx-font-size:16;
+}
 #nowPlayingLabel {
     -fx-font-size:20;
-    -fx-font-family:"Lucida Bright";
-    -fx-text-fill: "d17d00"
 }
+
+#addSongLabel {
+    -fx-font-size:12;
+ }

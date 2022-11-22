@@ -2,6 +2,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class PlayerGUI extends Application {
@@ -11,10 +12,12 @@ public class PlayerGUI extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+
         Parent root = FXMLLoader.load(getClass().getResource("gui.fxml"));
 
         stage.setTitle("Groovier Music");
         stage.setResizable(false);
+        stage.getIcons().add(new Image("icon.png"));
 
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("gui.css").toExternalForm());

@@ -10,17 +10,16 @@ public class Song {
     /** Loads a file to play audio from
      * @throws Exception if the file has an improper audio format
      */
-    public Song(File f){
+    public Song(File f) {
 
     }
 
-    /** Loads a song from a file path string */
-    public Song(String path){
-        try {
-            source = new URI(path);
-        } catch (URISyntaxException e){
-            System.out.println("Unable to parse "+path+" to valid URI");
-        }
+    /** Loads a song from a file path string
+     * @param path the string URI of the file
+     * @throws URISyntaxException if {@code path} is an improperly formatted URI
+    */
+    public Song(String path) throws URISyntaxException {
+        source = new URI(path);
     }
 
     /** Plays the file at the designated starting time 

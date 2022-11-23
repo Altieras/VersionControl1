@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -17,10 +18,15 @@ public class Playlist {
     /** The list of songs in the playlist in normal play order */
     private ArrayList<Song> songs;
 
-    /** Loads a playlist from a playlist save file */
-    public Playlist(File source){
+    /** Loads a playlist from a playlist save file
+     * @param source the save file of the playlist
+     * @throws FileNotFoundException if {@code source} does not exist or cant be accessed for any reason
+     * @throws Exception if {@code source} is improperly formatted and cannot be read
+    */
+    public Playlist(File source) throws FileNotFoundException, Exception {
         String fileName = source.getName();
         this.name = fileName.substring(0,fileName.lastIndexOf("."));
+        this.songs = new ArrayList<>();
         try {
             Scanner s = new Scanner(source);
             while(s.hasNextLine()){
@@ -28,15 +34,15 @@ public class Playlist {
             }
             s.close();
             
-        } catch (FileNotFoundException e){
-            System.out.println("Unable to load playlist from "+fileName+" as it does not exist!");
+        } catch (URISyntaxException e){
+            throw new Exception("Malformed save file "+source.getAbsolutePath());
         }
     }
 
     /** Creates an empty playlist with the given name */
     public Playlist(String name){
-        songs = new ArrayList<>();
         this.name = name;
+        this.songs = new ArrayList<>();
     }
 
     /** Creates a new playlist with all the songs of the given playlist

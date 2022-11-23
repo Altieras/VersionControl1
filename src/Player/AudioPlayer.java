@@ -1,3 +1,5 @@
+package Player;
+
 import java.util.LinkedList;
 
 /** This class will be used as the primary interface for interacting with the program */

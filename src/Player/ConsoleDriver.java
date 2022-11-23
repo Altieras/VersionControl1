@@ -1,3 +1,5 @@
+package Player;
+
 public class ConsoleDriver {
     public static void main(String[] args) {
         //bulk of logic is elsewhere

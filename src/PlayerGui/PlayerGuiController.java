@@ -1,3 +1,6 @@
+package PlayerGui;
+
+import PlaylistEditor.PLEController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -8,6 +11,9 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import Player.*;
+
+
 public class PlayerGuiController implements Initializable {
     @FXML
     private TextField addSongField;
@@ -16,7 +22,7 @@ public class PlayerGuiController implements Initializable {
     private ChoiceBox<String> playlistChoiceBox;
 
     private String activePlaylistName;
-    public AudioPlayer player = new AudioPlayer();
+
 
     /**
      * Add a song to the queue, specified by text in addSongField
@@ -24,7 +30,7 @@ public class PlayerGuiController implements Initializable {
      */
     public void addSong(ActionEvent a) {
         try {
-            player.addToQueue(new Song(new File(addSongField.getText())));
+            PlayerGUI.player.addToQueue(new Song(new File(addSongField.getText())));
             addSongField.clear();
         } catch (Exception e) {
             System.out.println("error");
@@ -37,7 +43,7 @@ public class PlayerGuiController implements Initializable {
      */
     // TODO: COMPLETE THIS METHOD
     public void newPlaylist(ActionEvent a) {
-        System.out.println("new playlist");
+        new PLEController().activate(a, new Playlist("New Playlist"));
     }
 
     /**
@@ -46,7 +52,10 @@ public class PlayerGuiController implements Initializable {
      */
     // TODO: COMPLETE THIS METHOD
     public void copyPlaylist(ActionEvent a) {
-        System.out.println("copy playlist");
+        Playlist original = new Playlist(new File("/data/" + activePlaylistName + ".playlist"));
+        Playlist copy = new Playlist(original);
+        copy.setName(copy.getName() + " - Copy");
+        copy.save();
     }
 
     /**
@@ -55,9 +64,9 @@ public class PlayerGuiController implements Initializable {
      */
     // TODO: COMPLETE THIS METHOD
     public void editPlaylist(ActionEvent a) {
-        System.out.println("edit playlist");
+        Playlist p = new Playlist(new File("./data/" + activePlaylistName + ".playlist"));
+        new PLEController().activate(a, p);
     }
-
 
     /**
      * Add all songs in a Playlist to the player queue
@@ -109,4 +118,5 @@ public class PlayerGuiController implements Initializable {
             playlistChoiceBox.getItems().add(f.getName().substring(0, f.getName().indexOf('.')));
         }
     }
+
 }

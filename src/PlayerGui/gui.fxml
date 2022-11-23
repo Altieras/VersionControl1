@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane fx:id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PlayerGuiController">
+<AnchorPane fx:id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PlayerGui.PlayerGuiController">
    <children>
       <Rectangle fx:id="center" arcHeight="5.0" arcWidth="5.0" height="162.0" layoutX="145.0" layoutY="27.0" stroke="BLACK" strokeType="INSIDE" width="210.0" />
       <Label fx:id="nowPlayingLabel" alignment="CENTER" layoutY="27.0" prefHeight="17.0" prefWidth="500.0" text="Currently Playing:" />

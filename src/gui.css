@@ -18,3 +18,8 @@
 #addSongLabel {
     -fx-font-size:12;
  }
+
+ #playlistChoiceBox {
+    -fx-font-size:12;
+    -fx-text-fill:"000000";
+}

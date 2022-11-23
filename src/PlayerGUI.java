@@ -14,7 +14,6 @@ public class PlayerGUI extends Application {
     public void start(Stage stage) throws Exception {
 
         Parent root = FXMLLoader.load(getClass().getResource("gui.fxml"));
-
         stage.setTitle("Groovier Music");
         stage.setResizable(false);
         stage.getIcons().add(new Image("icon.png"));

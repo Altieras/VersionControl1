@@ -4,6 +4,7 @@ import PlaylistEditor.PLEController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 
@@ -21,14 +22,15 @@ public class PlayerGuiController implements Initializable {
     @FXML
     private ChoiceBox<String> playlistChoiceBox;
 
-    private String activePlaylistName;
+    @FXML
+    private CheckBox shuffleButton;
 
+    private String activePlaylistName;
 
     /**
      * Add a song to the queue, specified by text in addSongField
-     * @param a Event triggered when the user enters text in addSongField
      */
-    public void addSong(ActionEvent a) {
+    public void addSong() {
         try {
             PlayerGUI.player.addToQueue(new Song(new File(addSongField.getText())));
             addSongField.clear();
@@ -44,18 +46,23 @@ public class PlayerGuiController implements Initializable {
     // TODO: COMPLETE THIS METHOD
     public void newPlaylist(ActionEvent a) {
         new PLEController().activate(a, new Playlist("New Playlist"));
+        updateExistingPlaylists();
     }
 
     /**
      * Create a new Playlist by copying an existing one
-     * @param a Event triggered when the user clicks copyPlaylistButton
      */
     // TODO: COMPLETE THIS METHOD
-    public void copyPlaylist(ActionEvent a) {
-        Playlist original = new Playlist(new File("/data/" + activePlaylistName + ".playlist"));
-        Playlist copy = new Playlist(original);
-        copy.setName(copy.getName() + " - Copy");
-        copy.save();
+    public void copyPlaylist() {
+        try {
+            Playlist original = new Playlist(new File("/data/" + activePlaylistName + ".playlist"));
+            Playlist copy = new Playlist(original);
+            copy.setName(copy.getName() + " - Copy");
+            copy.save();
+            updateExistingPlaylists();
+        } catch (Exception e) {
+            System.out.println("Error copying");
+        }
     }
 
     /**
@@ -64,25 +71,28 @@ public class PlayerGuiController implements Initializable {
      */
     // TODO: COMPLETE THIS METHOD
     public void editPlaylist(ActionEvent a) {
-        Playlist p = new Playlist(new File("./data/" + activePlaylistName + ".playlist"));
-        new PLEController().activate(a, p);
+        try {
+            Playlist p = new Playlist(new File("./data/" + activePlaylistName + ".playlist"));
+            System.out.println(p);
+            new PLEController().activate(a, p);
+        } catch (Exception e) {
+            System.out.println("Error opening editor");
+        }
     }
 
     /**
      * Add all songs in a Playlist to the player queue
-     * @param a Event triggered when the user clicks playPlaylistButton
      */
-    // TODO: COMPLETE THIS METHOD
-    public void playPlaylist(ActionEvent a) {
-        System.out.println("play playlist");
+    public void playPlaylist() {
+        Playlist p = new Playlist("./data/" + activePlaylistName + ".playlist");
+        PlayerGUI.player.addToQueue(p, shuffleButton.isSelected());
     }
 
     /**
      * Delete a Playlist
-     * @param a Event triggered when the user clicks deletePlaylistButton
      */
-    public void deletePlaylist(ActionEvent a) {
-        File playlistFile = new File(".\\data\\" + activePlaylistName + ".playlist");
+    public void deletePlaylist() {
+        File playlistFile = new File("./data/" + activePlaylistName + ".playlist");
 
         if (playlistFile.delete()) {
             System.out.println("Playlist deleted");
@@ -101,9 +111,9 @@ public class PlayerGuiController implements Initializable {
 
     /**
      * Update the String active playlist when the user selects a different playlist.
-     * @param event Event triggered by the user clicking an option in the playlist choice box.
+     * @param a Event triggered by the user clicking an option in the playlist choice box.
      */
-    public void updateActivePlaylist(ActionEvent event) {
+    public void updateActivePlaylist(ActionEvent a) {
         activePlaylistName = playlistChoiceBox.getValue();
     }
 
@@ -112,7 +122,7 @@ public class PlayerGuiController implements Initializable {
      * Invoked when a playlist is created or deleted.
      */
     public void updateExistingPlaylists() {
-        File[] playlists = new File(".\\data").listFiles();
+        File[] playlists = new File("./data").listFiles();
         playlistChoiceBox.getItems().clear();
         for (File f: playlists) {
             playlistChoiceBox.getItems().add(f.getName().substring(0, f.getName().indexOf('.')));

@@ -11,6 +11,12 @@
     -fx-text-fill:"ffffff";
     -fx-font-size:16;
 }
+
+#shuffleButton {
+    -fx-font-family:"Lucida Bright";
+    -fx-text-fill:"ffffff";
+    -fx-font-size:12;
+}
 #nowPlayingLabel {
     -fx-font-size:20;
 }

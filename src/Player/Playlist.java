@@ -66,24 +66,24 @@ public class Playlist {
      * @param s the song to add
      */
     public void add(Song s){
-
+        this.songs.add(s);
     }
 
     /** Removes a song from the playlist
      * @param s the song to remove
      */
     public void remove(Song s){
-
+        this.songs.remove(s);
     }
 
     /** @return the name of the playlist */
     public String getName(){
-        return null;
+        return this.name;
     }
     
     /** @return an arraylist of the songs in the playlist */
     public ArrayList<Song> getSongs(){
-        return null;
+        return this.songs;
     }
 
     /** Generates a save file for this playlist */

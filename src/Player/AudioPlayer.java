@@ -1,3 +1,5 @@
+package Player;
+
 import java.util.LinkedList;
 
 /** This class will be used as the primary interface for interacting with the program */
@@ -45,7 +47,7 @@ public class AudioPlayer {
 
     /** Adds a song to the queue */
     public void addToQueue(Song s){
-
+        System.out.println("hello this method was called correctly");
     }
 
     /** Adds every song in a playlist to the queue */

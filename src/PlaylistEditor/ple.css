@@ -1,0 +1,13 @@
+.root {
+    -fx-background-color:"271349";
+}
+
+.label {
+    -fx-font-family:"Lucida Bright";
+    -fx-text-fill:"ffffff";
+    -fx-font-size:12;
+}
+
+#nameFieldLabel {
+    -fx-font-size:16;
+}

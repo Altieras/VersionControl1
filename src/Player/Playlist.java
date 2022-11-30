@@ -59,7 +59,6 @@ public class Playlist {
      * @param p the playlist to copy the songs from
      */
     public Playlist(Playlist p){
-
         //setting name
         boolean set = false;
         int i = 0;

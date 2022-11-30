@@ -1,9 +1,6 @@
 package Player;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,7 +40,18 @@ public class Playlist {
 
     /** Creates an empty playlist with the given name */
     public Playlist(String name){
-        this.name = name;
+        boolean set = false;
+        int i = 0;
+        while(!set) {
+            if(setName(name + i)) {
+                this.name = name + i;
+                set = true;
+            }
+            else{
+                i++;
+            }
+        }
+
         this.songs = new ArrayList<>();
     }
 
@@ -52,6 +60,27 @@ public class Playlist {
      */
     public Playlist(Playlist p){
 
+        //setting name
+        boolean set = false;
+        int i = 0;
+        while(!set) {
+            if(setName(p.name + "Copy" + i)) {
+                this.name = p.name + "Copy" + i;
+                set = true;
+            }
+            else{
+                i++;
+            }
+        }
+
+        //setting songs
+        this.songs = new ArrayList<>();
+        this.songs.addAll(p.songs);
+
+        //setting songsMap
+        for(int j = 0; j<songs.size(); j++){
+            songsMap.put(songs.get(j),j);
+        }
     }
 
     /** Set the name of the playlist
@@ -67,6 +96,7 @@ public class Playlist {
      */
     public void add(Song s){
         this.songs.add(s);
+        this.songsMap.put(s,songsMap.size());
     }
 
     /** Removes a song from the playlist
@@ -74,6 +104,7 @@ public class Playlist {
      */
     public void remove(Song s){
         this.songs.remove(s);
+        this.songsMap.remove(s);
     }
 
     /** @return the name of the playlist */

@@ -24,7 +24,6 @@ public class PLEController implements Initializable {
     @FXML
     private Button exitSave;
 
-
     public void activate(ActionEvent a, Playlist p) {
         try {
             Stage stage = (Stage)((Node) a.getSource()).getScene().getWindow();

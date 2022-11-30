@@ -12,10 +12,10 @@
    <children>
       <Rectangle fx:id="center" arcHeight="5.0" arcWidth="5.0" height="162.0" layoutX="145.0" layoutY="27.0" stroke="BLACK" strokeType="INSIDE" width="210.0" />
       <Label fx:id="nowPlayingLabel" alignment="CENTER" layoutY="27.0" prefHeight="17.0" prefWidth="500.0" text="Currently Playing:" />
-      <Label fx:id="queueLabel" layoutX="395.0" layoutY="5.0" text="Queue" />
+      <Label fx:id="queueLabel" layoutX="408.0" layoutY="5.0" text="Queue" />
       <Label fx:id="playlistLabel" layoutX="14.0" layoutY="5.0" prefHeight="17.0" prefWidth="126.0" text="Playlist options" />
-      <TextField fx:id="addSongField" layoutX="365.0" layoutY="210.0" onAction="#addSong" prefHeight="25.0" prefWidth="126.0" promptText="song source" />
-      <Label fx:id="addSongLabel" layoutX="365.0" layoutY="189.0" text="Add a song:" />
+      <TextField fx:id="addSongField" layoutX="363.0" layoutY="190.0" onAction="#addSong" prefHeight="25.0" prefWidth="126.0" promptText="song source" />
+      <Label fx:id="addSongLabel" layoutX="363.0" layoutY="174.0" text="Add a song:" />
       <Button fx:id="newPlaylistButton" layoutX="14.0" layoutY="30.0" mnemonicParsing="false" onAction="#newPlaylist" text="New" />
       <Button fx:id="copyPlaylistButton" layoutX="14.0" layoutY="62.0" mnemonicParsing="false" onAction="#copyPlaylist" text="Copy" />
       <Button fx:id="editPlaylistButton" layoutX="14.0" layoutY="94.0" mnemonicParsing="false" onAction="#editPlaylist" text="Edit" />
@@ -23,5 +23,10 @@
       <Button fx:id="deletePlaylistButton" layoutX="14.0" layoutY="158.0" mnemonicParsing="false" onAction="#deletePlaylist" text="Delete" />
       <ChoiceBox fx:id="playlistChoiceBox" layoutX="14.0" layoutY="190.0" prefHeight="25.0" prefWidth="120.0" />
       <CheckBox fx:id="shuffleButton" layoutX="65.0" layoutY="130.0" mnemonicParsing="false" text="Shuffle" />
+      <Button fx:id="playButton" layoutX="202.0" layoutY="158.0" mnemonicParsing="false" onAction="#play" text="Play" />
+      <Button fx:id="pauseButton" layoutX="260.0" layoutY="158.0" mnemonicParsing="false" onAction="#pause" text="Pause" />
+      <Button fx:id="nextButton" layoutX="322.0" layoutY="158.0" mnemonicParsing="false" onAction="#next" text="-&gt;" />
+      <Button fx:id="backButton" layoutX="148.0" layoutY="158.0" mnemonicParsing="false" onAction="#previous" text="&lt;-" />
+      <Button fx:id="clearButton" layoutX="386.0" layoutY="220.0" mnemonicParsing="false" onAction="#clearQueue" text="Clear queue" />
    </children>
 </AnchorPane>

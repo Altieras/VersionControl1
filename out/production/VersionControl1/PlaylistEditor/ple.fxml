@@ -42,16 +42,16 @@
             <Label text="8." GridPane.rowIndex="7" />
             <Label text="9." GridPane.rowIndex="8" />
             <Label text="10." GridPane.rowIndex="9" />
-            <TextField GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <TextField fx:id="s1" GridPane.columnIndex="1" />
+            <TextField fx:id="s2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="s3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="s4" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="s5" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="s6" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="s7" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="s8" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <TextField fx:id="s9" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <TextField fx:id="s10" GridPane.columnIndex="1" GridPane.rowIndex="9" />
          </children>
       </GridPane>
       <GridPane layoutX="144.0" layoutY="68.0" prefHeight="250.0" prefWidth="120.0">
@@ -72,17 +72,17 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <TextField GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="s11" GridPane.columnIndex="1" />
+            <TextField fx:id="s12" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="s13" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="s14" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="s15" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="s16" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="s17" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <TextField GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <TextField fx:id="s18" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <TextField fx:id="s19" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <TextField fx:id="s20" GridPane.columnIndex="1" GridPane.rowIndex="9" />
             <Label text="11." />
             <Label text="12." GridPane.rowIndex="1" />
             <Label text="13." GridPane.rowIndex="2" />
@@ -113,16 +113,16 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <TextField GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <TextField fx:id="s21" GridPane.columnIndex="1" />
+            <TextField fx:id="s22" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="s23" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="s24" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="s25" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="s26" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="s27" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="s28" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <TextField fx:id="s29" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <TextField fx:id="s30" GridPane.columnIndex="1" GridPane.rowIndex="9" />
             <Label text="21." />
             <Label text="22." GridPane.rowIndex="1" />
             <Label text="23." GridPane.rowIndex="2" />

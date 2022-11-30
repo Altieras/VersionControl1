@@ -12,7 +12,8 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import Player.*;
+import Player.Playlist;
+import Player.Song;
 
 
 public class PlayerGuiController implements Initializable {
@@ -28,7 +29,7 @@ public class PlayerGuiController implements Initializable {
     private String activePlaylistName;
 
     /**
-     * Add a song to the queue, specified by text in addSongField
+     * Add a song to the queue, source specified by text in addSongField
      */
     public void addSong() {
         try {
@@ -40,10 +41,49 @@ public class PlayerGuiController implements Initializable {
     }
 
     /**
+     * Pause the currently playing song
+     */
+    public void play() {
+        PlayerGUI.player.play();
+        System.out.println("play");
+    }
+
+    /**
+     * Continue the current song
+     */
+    public void pause() {
+        PlayerGUI.player.pause();
+        System.out.println("pause");
+    }
+
+    /**
+     * Skip to the next song
+     */
+    public void next() {
+        PlayerGUI.player.playNext();
+        System.out.println("next");
+    }
+
+    /**
+     * Return to the previous song
+     */
+    public void previous() {
+        PlayerGUI.player.playPrevious();
+        System.out.println("previous");
+    }
+
+    /**
+     * Clear the player queue
+     */
+    public void clearQueue() {
+        PlayerGUI.player.clearQueue();
+        System.out.println("clear queue");
+    }
+
+    /**
      * Create a new Playlist
      * @param a Event triggered when the user clicks newPlaylistButton
      */
-    // TODO: COMPLETE THIS METHOD
     public void newPlaylist(ActionEvent a) {
         new PLEController().activate(a, new Playlist("New Playlist"));
         updateExistingPlaylists();
@@ -52,7 +92,6 @@ public class PlayerGuiController implements Initializable {
     /**
      * Create a new Playlist by copying an existing one
      */
-    // TODO: COMPLETE THIS METHOD
     public void copyPlaylist() {
         try {
             Playlist original = new Playlist(new File("/data/" + activePlaylistName + ".playlist"));

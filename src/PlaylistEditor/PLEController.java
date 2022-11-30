@@ -1,6 +1,7 @@
 package PlaylistEditor;
 
 import Player.Playlist;
+import PlayerGui.PlayerGUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +24,6 @@ public class PLEController implements Initializable {
     @FXML
     private Button exitSave;
 
-    private Playlist activePlaylist;
 
     public void activate(ActionEvent a, Playlist p) {
         try {
@@ -33,12 +33,13 @@ public class PLEController implements Initializable {
             scene.getStylesheets().add(getClass().getResource("/PlaylistEditor/ple.css").toExternalForm());
             stage.setScene(scene);
             stage.show();
-            activePlaylist = p;
+            PlayerGUI.editablePlaylist = p;
         } catch (IOException e) {
             e.printStackTrace();
         }
         System.out.println("activated");
-        System.out.println(activePlaylist);
+        System.out.println(p);
+        System.out.println(PlayerGUI.editablePlaylist);
     }
 
     public void exit(ActionEvent a) {
@@ -60,13 +61,11 @@ public class PLEController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(activePlaylist);
+        System.out.println(PlayerGUI.editablePlaylist);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        activePlaylist = new Playlist("New Playlist");
-        System.out.println(activePlaylist);
         System.out.println("initialized");
     }
 }

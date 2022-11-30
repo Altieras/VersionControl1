@@ -1,7 +1,8 @@
 package PlayerGui;
 
 import Player.AudioPlayer;
-import PlaylistEditor.PLEController;
+import Player.Playlist;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,9 +13,11 @@ import javafx.stage.Stage;
 
 public class PlayerGUI extends Application {
     public static AudioPlayer player;
+    public static Playlist editablePlaylist;
 
     public static void main(String[] args) {
         player = new AudioPlayer();
+        editablePlaylist = new Playlist("New Playlist");
         Application.launch(args);
     }
 

@@ -79,4 +79,22 @@ public class Song {
     public URI getUri(){
         return source;
     }
+
+    @Override
+    public int hashCode() {
+        return source.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj){
+            return true;
+        }
+        if (!(obj instanceof Song)){
+            return false;
+        }
+
+        Song o = (Song)obj;
+        return source.equals(o.source);
+    }
 }

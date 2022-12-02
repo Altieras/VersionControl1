@@ -1,8 +1,11 @@
 package Player;
 
 import java.io.File;
+import java.nio.file.Files;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.LinkedList;
+import java.util.List;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -13,6 +16,35 @@ public class Song {
     /** The URI of the source file */
     private URI source;
     private MediaPlayer player;
+
+    /**
+     * Searches through to find all the audio files stored in a directory
+     * @param f the folder to search
+     * @return a list of the songs found
+     */
+    public static List<Song> searchFolder(File dir){
+        LinkedList<Song> songs = new LinkedList<>();
+        if (!dir.isDirectory()){
+            throw new IllegalArgumentException("File is not a directory!");
+        }
+        File[] files = dir.listFiles();
+        for (File f : files){
+            try {
+                if (f.isDirectory()){
+                    songs.addAll(searchFolder(f));
+                }
+                else {
+                    String contentType = Files.probeContentType(f.toPath());
+                    if (contentType.indexOf("audio") == 0){
+                        songs.add(new Song(f));
+                    }
+                }
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return songs;
+    }
     
     /** Loads a file to play audio from
      * @throws Exception if the file has an improper audio format
@@ -21,7 +53,6 @@ public class Song {
         source = f.toURI();
         Media hit = new Media(source.toString());
         player = new MediaPlayer(hit);
-        player.play();
     }
 
     /** Loads a song from a file path string
@@ -32,7 +63,6 @@ public class Song {
         source = new URI(path);
         Media hit = new Media(source.toString());
         player = new MediaPlayer(hit);
-        player.play();
     }
 
     /**

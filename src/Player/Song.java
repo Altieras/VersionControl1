@@ -104,7 +104,12 @@ public class Song {
         return media.getDuration().toSeconds();
     }
 
-    public String getUri(){
+    public String getUriString(){
+        return media.getSource();
+    }
+
+    @Override
+    public String toString() {
         return media.getSource();
     }
 
@@ -123,6 +128,6 @@ public class Song {
         }
 
         Song o = (Song)obj;
-        return getUri().equals(o.getUri());
+        return getUriString().equals(o.getUriString());
     }
 }

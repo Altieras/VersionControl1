@@ -87,7 +87,7 @@ public class Playlist {
      * @return false if another playlist already has that name
      */
     public boolean setName(String name){
-        return false;
+        return true;
     }
 
     /** Adds a song to the playlist
@@ -126,7 +126,7 @@ public class Playlist {
             FileWriter w = new FileWriter("data"+File.separator+name.toLowerCase()+".playlist");
 
             for (Song s : songs){
-                w.append(s.getUri().toString());
+                w.append(s.getUriString().toString());
             }
             w.close();
         } catch (IOException e){

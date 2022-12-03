@@ -7,15 +7,14 @@ import java.net.URISyntaxException;
 import java.util.LinkedList;
 import java.util.List;
 
+import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.util.Duration;
 
 public class Song {
 
     /** The URI of the source file */
-    private URI source;
-    private MediaPlayer player;
+    private AudioClip clip;
+    private Media media;
 
     /**
      * Searches through to find all the audio files stored in a directory
@@ -50,9 +49,9 @@ public class Song {
      * @throws Exception if the file has an improper audio format
      */
     public Song(File f) {
-        source = f.toURI();
-        Media hit = new Media(source.toString());
-        player = new MediaPlayer(hit);
+        URI source = f.toURI();
+        clip = new AudioClip(source.toString());
+        media = new Media(source.toString());
     }
 
     /** Loads a song from a file path string
@@ -60,9 +59,9 @@ public class Song {
      * @throws URISyntaxException if {@code path} is an improperly formatted URI
     */
     public Song(String path) throws URISyntaxException {
-        source = new URI(path);
-        Media hit = new Media(source.toString());
-        player = new MediaPlayer(hit);
+        URI source = new URI(path);
+        clip = new AudioClip(source.toString());
+        media = new Media(source.toString());
     }
 
     /**
@@ -76,20 +75,19 @@ public class Song {
      * @param time the time (in seconds) at which to start playing the file at
     */
     public void play(int time){
-        player.seek(new Duration(time*1000));
-        player.play();
+        clip.play();
     }
 
     /** Stops playing the file */
     public void pause(){
-        player.pause();
+        clip.stop();
     }
 
     /** Checks if the audio file is currently being played
      * @return true if the file is being played
      */
     public boolean playing(){
-        return player.getStatus() == MediaPlayer.Status.PLAYING;
+        return clip.isPlaying();
     }
 
     /**
@@ -103,16 +101,16 @@ public class Song {
      * @return the length of the song in seconds
      */
     public double getDuration(){
-        return player.getTotalDuration().toSeconds();
+        return media.getDuration().toSeconds();
     }
 
-    public URI getUri(){
-        return source;
+    public String getUri(){
+        return media.getSource();
     }
 
     @Override
     public int hashCode() {
-        return source.hashCode();
+        return media.getSource().hashCode();
     }
 
     @Override
@@ -125,6 +123,6 @@ public class Song {
         }
 
         Song o = (Song)obj;
-        return source.equals(o.source);
+        return getUri().equals(o.getUri());
     }
 }

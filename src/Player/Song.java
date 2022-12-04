@@ -94,7 +94,8 @@ public class Song {
      * @return the name of the song
      */
     public String getName(){
-        return null;
+        File source = new File(media.getSource());
+        return source.getName().substring(0,source.getName().lastIndexOf("."));
     }
 
     /**

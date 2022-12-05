@@ -87,7 +87,8 @@ public class Playlist {
      * @return false if another playlist already has that name
      */
     public boolean setName(String name){
-        return true;
+        File file = new File("data"+File.separator+name.toLowerCase()+".playlist");
+        return(!file.isFile());
     }
 
     /** Adds a song to the playlist

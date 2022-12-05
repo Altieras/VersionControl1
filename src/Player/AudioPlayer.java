@@ -6,8 +6,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import javax.sound.sampled.AudioSystem;
+import static java.util.Collections.shuffle;
+
 
 /** This class will be used as the primary interface for interacting with the program */
 public class AudioPlayer {
@@ -35,7 +38,7 @@ public class AudioPlayer {
     /** Plays the current song starting at the saved timestamp */
     public void play(){
         try {
-            aStr = AudioSystem.getAudioInputStream(currentSong.getUri().toURL());
+            aStr = AudioSystem.getAudioInputStream(new File(currentSong.getUriString()));
             clip.open(aStr);
             clip.start();
         }
@@ -83,7 +86,13 @@ public class AudioPlayer {
             }
         }
 
-        //add shuffle feature
+        if(shuffle){
+            ArrayList<Song> songCopy = new ArrayList<>(p.getSongs());
+            shuffle(songCopy);
+            for(Song s : songCopy){
+                queue.add(s);
+            }
+        }
     }
 
     /**

@@ -64,22 +64,18 @@ public class Song {
         media = new Media(source.toString());
     }
 
-    /**
-     * Plays a song from its beginning
-     */
+    /** Plays the file from the beginning */
     public void play(){
-        play(0);
-    }
-
-    /** Plays the file at the designated starting time 
-     * @param time the time (in seconds) at which to start playing the file at
-    */
-    public void play(int time){
         clip.play();
     }
 
+    /** Pauses playback of the file */
+    // public void pause(){
+    //     clip.setRate(0);
+    // }
+
     /** Stops playing the file */
-    public void pause(){
+    public void stop(){
         clip.stop();
     }
 

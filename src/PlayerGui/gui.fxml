@@ -28,5 +28,6 @@
       <Button fx:id="nextButton" layoutX="322.0" layoutY="158.0" mnemonicParsing="false" onAction="#next" text="-&gt;" />
       <Button fx:id="backButton" layoutX="148.0" layoutY="158.0" mnemonicParsing="false" onAction="#previous" text="&lt;-" />
       <Button fx:id="clearButton" layoutX="386.0" layoutY="220.0" mnemonicParsing="false" onAction="#clearQueue" text="Clear queue" />
+      <Label fx:id="errorLabel" layoutX="149.0" layoutY="194.0" text="Default error" />
    </children>
 </AnchorPane>

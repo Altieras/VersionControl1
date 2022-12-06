@@ -24,6 +24,11 @@ public class PLEController implements Initializable {
     @FXML
     private Button exitSave;
 
+    /**
+     * Loads the editor GUI and sets the Main.editablePlaylist Playlist to a Playlist passed in.
+     * @param a Event triggered by clicking the "New" or "Edit" buttons in the main GUI scene.
+     * @param p Playlist assigned to Main.editablePlaylist.
+     */
     public void activate(ActionEvent a, Playlist p) {
         try {
             Stage stage = (Stage)((Node) a.getSource()).getScene().getWindow();
@@ -36,11 +41,12 @@ public class PLEController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("activated");
-        System.out.println(p);
-        System.out.println(PlayerGUI.editablePlaylist);
     }
 
+    /**
+     * Handles collection of data from editor text fields and returns window to main GUI scene.
+     * @param a Event triggered by clicking either the "Save" or "Cancel buttons.
+     */
     public void exit(ActionEvent a) {
         if (a.getSource() == exitSave) {
             // Gather information from text fields
@@ -60,11 +66,14 @@ public class PLEController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(PlayerGUI.editablePlaylist);
     }
 
+    /**
+     * Inherited method from Initializable interface.
+     * Called when the GUI starts.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("initialized");
+        //System.out.println("initialized");
     }
 }

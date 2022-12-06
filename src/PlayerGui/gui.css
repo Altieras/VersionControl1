@@ -29,3 +29,8 @@
     -fx-font-size:12;
     -fx-text-fill:"000000";
 }
+
+#errorLabel {
+    -fx-font-size:12;
+    -fx-text-fill:f13636;
+}

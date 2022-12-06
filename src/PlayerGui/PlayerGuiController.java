@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.io.File;
@@ -26,12 +27,16 @@ public class PlayerGuiController implements Initializable {
     @FXML
     private CheckBox shuffleButton;
 
+    @FXML
+    private Label errorLabel;
+
     private String activePlaylistName;
 
     /**
      * Add a song to the queue, source specified by text in addSongField
      */
     public void addSong() {
+        clearError();
         try {
             PlayerGUI.player.addToQueue(new Song(new File(addSongField.getText())));
             addSongField.clear();
@@ -44,6 +49,7 @@ public class PlayerGuiController implements Initializable {
      * Pause the currently playing song
      */
     public void play() {
+        clearError();
         PlayerGUI.player.play();
         System.out.println("play");
     }
@@ -52,6 +58,7 @@ public class PlayerGuiController implements Initializable {
      * Continue the current song
      */
     public void pause() {
+        clearError();
         PlayerGUI.player.pause();
         System.out.println("pause");
     }
@@ -60,6 +67,7 @@ public class PlayerGuiController implements Initializable {
      * Skip to the next song
      */
     public void next() {
+        clearError();
         PlayerGUI.player.playNext();
         System.out.println("next");
     }
@@ -68,6 +76,7 @@ public class PlayerGuiController implements Initializable {
      * Return to the previous song
      */
     public void previous() {
+        clearError();
         PlayerGUI.player.playPrevious();
         System.out.println("previous");
     }
@@ -76,6 +85,7 @@ public class PlayerGuiController implements Initializable {
      * Clear the player queue
      */
     public void clearQueue() {
+        clearError();
         PlayerGUI.player.clearQueue();
         System.out.println("clear queue");
     }
@@ -87,12 +97,14 @@ public class PlayerGuiController implements Initializable {
     public void newPlaylist(ActionEvent a) {
         new PLEController().activate(a, new Playlist("New Playlist"));
         updateExistingPlaylists();
+        //clearError();
     }
 
     /**
      * Create a new Playlist by copying an existing one
      */
     public void copyPlaylist() {
+        clearError();
         try {
             Playlist original = new Playlist(new File("/data/" + activePlaylistName + ".playlist"));
             Playlist copy = new Playlist(original);
@@ -100,7 +112,8 @@ public class PlayerGuiController implements Initializable {
             copy.save();
             updateExistingPlaylists();
         } catch (Exception e) {
-            System.out.println("Error copying");
+            //System.out.println("Error copying");
+            displayError("Error copying playlist");
         }
     }
 
@@ -108,14 +121,15 @@ public class PlayerGuiController implements Initializable {
      * Edit the contents of a Playlist
      * @param a Event triggered when the user clicks editPlaylistButton
      */
-    // TODO: COMPLETE THIS METHOD
     public void editPlaylist(ActionEvent a) {
+        clearError();
         try {
             Playlist p = new Playlist(new File("./data/" + activePlaylistName + ".playlist"));
             System.out.println(p);
             new PLEController().activate(a, p);
         } catch (Exception e) {
-            System.out.println("Error opening editor");
+            //System.out.println("Error opening editor");
+            displayError("Error opening editor");
         }
     }
 
@@ -123,6 +137,7 @@ public class PlayerGuiController implements Initializable {
      * Add all songs in a Playlist to the player queue
      */
     public void playPlaylist() {
+        clearError();
         Playlist p = new Playlist("./data/" + activePlaylistName + ".playlist");
         PlayerGUI.player.addToQueue(p, shuffleButton.isSelected());
     }
@@ -131,21 +146,27 @@ public class PlayerGuiController implements Initializable {
      * Delete a Playlist
      */
     public void deletePlaylist() {
+        clearError();
         File playlistFile = new File("./data/" + activePlaylistName + ".playlist");
 
         if (playlistFile.delete()) {
-            System.out.println("Playlist deleted");
+            //System.out.println("Playlist deleted");
             updateExistingPlaylists();
         } else {
-            System.out.println("Error");
+            //System.out.println("Error");
+            displayError("Error deleting playlist");
         }
     }
 
-
+    /**
+     * Inherited method from Initializable interface.
+     * Called when the GUI starts.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         updateExistingPlaylists();
         playlistChoiceBox.setOnAction(this::updateActivePlaylist);
+        clearError();
     }
 
     /**
@@ -168,4 +189,18 @@ public class PlayerGuiController implements Initializable {
         }
     }
 
+    /**
+     * Print an error message to the GUI
+     * @param message the error message
+     */
+    public void displayError(String message) {
+        errorLabel.setText(message);
+    }
+
+    /**
+     * Clear the error output
+     */
+    public void clearError() {
+        errorLabel.setText("");
+    }
 }

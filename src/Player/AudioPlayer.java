@@ -2,6 +2,8 @@ package Player;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Stack;
+
 import static java.util.Collections.shuffle;
 
 
@@ -46,7 +48,11 @@ public class AudioPlayer {
 
         if (currentSong != null){
             currentSong.stop();
-            previousSongs.add(currentSong);
+            previousSongs.addFirst(currentSong);
+
+            if(previousSongs.size()>MAX_LENGTH){
+                previousSongs.removeLast();
+            }
         }
         currentSong = queue.pop();
         play();
@@ -60,7 +66,13 @@ public class AudioPlayer {
 
         if (currentSong != null){
             currentSong.stop();
-            queue.add(currentSong);
+            queue.addFirst(currentSong);
+            //so current song will be the next song
+
+            if(queue.size()>MAX_LENGTH){
+                queue.removeLast();
+                //keeping within max size
+            }
         }
         currentSong = previousSongs.pop();
         play();
@@ -75,6 +87,10 @@ public class AudioPlayer {
     public void addToQueue(Song s){
         System.out.println("hello this method was called correctly");
         queue.add(s);
+        //how to handle size? remove the next up song? (since we are adding to the end of queue)
+        if(queue.size()>MAX_LENGTH){
+            queue.removeFirst();
+        }
     }
 
     /** Adds every song in a playlist to the queue */
@@ -91,6 +107,10 @@ public class AudioPlayer {
             for(Song s : songCopy){
                 queue.add(s);
             }
+        }
+        //same, how to handle size
+        for(int i = queue.size()-MAX_LENGTH; i>0; i--){
+            queue.removeFirst();
         }
     }
 

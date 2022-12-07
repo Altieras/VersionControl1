@@ -34,11 +34,15 @@
     -fx-font-size:12;
 }
 
-#nowPlayingLabel {
+#songTitle {
     -fx-font-size:20;
 }
 
 #addSongLabel {
+    -fx-font-size:12;
+ }
+
+ #queueContents {
     -fx-font-size:12;
  }
 

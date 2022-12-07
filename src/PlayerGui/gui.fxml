@@ -10,7 +10,7 @@
 
 <AnchorPane fx:id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PlayerGui.PlayerGuiController">
    <children>
-      <Rectangle fx:id="center" arcHeight="5.0" arcWidth="5.0" height="162.0" layoutX="145.0" layoutY="27.0" stroke="BLACK" strokeType="INSIDE" width="210.0" />
+      <Rectangle fx:id="center" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="162.0" layoutX="145.0" layoutY="27.0" stroke="BLACK" strokeType="INSIDE" width="210.0" />
       <Label fx:id="nowPlayingLabel" alignment="CENTER" layoutY="27.0" prefHeight="17.0" prefWidth="500.0" text="Currently Playing:" />
       <Label fx:id="queueLabel" layoutX="408.0" layoutY="5.0" text="Queue" />
       <Label fx:id="playlistLabel" layoutX="14.0" layoutY="5.0" prefHeight="17.0" prefWidth="126.0" text="Playlist options" />
@@ -29,5 +29,7 @@
       <Button fx:id="backButton" layoutX="148.0" layoutY="158.0" mnemonicParsing="false" onAction="#previous" text="&lt;-" />
       <Button fx:id="clearButton" layoutX="386.0" layoutY="220.0" mnemonicParsing="false" onAction="#clearQueue" text="Clear queue" />
       <Label fx:id="errorLabel" layoutX="149.0" layoutY="194.0" text="Default error" />
+      <Label fx:id="queueContents" layoutX="363.0" layoutY="27.0" text="Label" />
+      <Label fx:id="songTitle" alignment="CENTER" layoutX="145.0" layoutY="46.0" prefHeight="17.0" prefWidth="210.0" text="def" textAlignment="CENTER" />
    </children>
 </AnchorPane>

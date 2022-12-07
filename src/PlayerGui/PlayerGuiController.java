@@ -1,6 +1,5 @@
 package PlayerGui;
 
-import PlaylistEditor.PLEController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,10 +10,12 @@ import javafx.scene.control.TextField;
 
 import java.io.File;
 import java.net.URL;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 
 import Player.Playlist;
 import Player.Song;
+import PlaylistEditor.PLEController;
 
 
 public class PlayerGuiController implements Initializable {
@@ -28,7 +29,7 @@ public class PlayerGuiController implements Initializable {
     private CheckBox shuffleButton;
 
     @FXML
-    private Label errorLabel;
+    private Label errorLabel, queueContents, songTitle;
 
     private String activePlaylistName;
 
@@ -43,6 +44,7 @@ public class PlayerGuiController implements Initializable {
         } catch (Exception e) {
             displayError("Error adding song");
         }
+        updateDisplay();
     }
 
     /**
@@ -51,6 +53,7 @@ public class PlayerGuiController implements Initializable {
     public void play() {
         clearError();
         PlayerGUI.player.play();
+        updateDisplay();
     }
 
     /**
@@ -59,6 +62,7 @@ public class PlayerGuiController implements Initializable {
     public void pause() {
         clearError();
         PlayerGUI.player.pause();
+        updateDisplay();
     }
 
     /**
@@ -67,6 +71,7 @@ public class PlayerGuiController implements Initializable {
     public void next() {
         clearError();
         PlayerGUI.player.playNext();
+        updateDisplay();
     }
 
     /**
@@ -75,6 +80,7 @@ public class PlayerGuiController implements Initializable {
     public void previous() {
         clearError();
         PlayerGUI.player.playPrevious();
+        updateDisplay();
     }
 
     /**
@@ -83,6 +89,7 @@ public class PlayerGuiController implements Initializable {
     public void clearQueue() {
         clearError();
         PlayerGUI.player.clearQueue();
+        updateDisplay();
     }
 
     /**
@@ -124,6 +131,7 @@ public class PlayerGuiController implements Initializable {
             displayError("Error opening editor");
         }
     }
+    // This does not work. The playlist editor opens, but does not contain existing list data.
 
     /**
      * Add all songs in a Playlist to the player queue
@@ -160,6 +168,7 @@ public class PlayerGuiController implements Initializable {
         this.activePlaylistName = playlistChoiceBox.getValue();
         playlistChoiceBox.setOnAction(this::updateActivePlaylist);
         clearError();
+        updateDisplay();
     }
 
     /**
@@ -182,6 +191,25 @@ public class PlayerGuiController implements Initializable {
             playlistChoiceBox.getItems().add(f.getName().substring(0, f.getName().lastIndexOf('.')));
         }
         playlistChoiceBox.setValue((playlists[0].getName()).substring(0,playlists[0].getName().lastIndexOf('.')));
+    }
+
+    /**
+     * Display the player queue and the name of the currently playing song
+     */
+    public void updateDisplay() {
+        StringBuilder queueString = new StringBuilder();
+        LinkedList<Song> queue = PlayerGUI.player.getQueue();
+        for (Song s : queue) {
+            queueString.append(s.getName());
+            queueString.append("\n");
+        }
+        queueContents.setText(queueString.toString());
+
+        try {
+            songTitle.setText(PlayerGUI.player.getSong().getName());
+        } catch (Exception e) {
+            songTitle.setText("Nothing");
+        }
     }
 
     /**

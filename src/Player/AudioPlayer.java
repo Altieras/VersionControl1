@@ -108,7 +108,7 @@ public class AudioPlayer {
                 queue.add(s);
             }
         }
-        //same, how to handle size
+        //same thing with size
         for(int i = queue.size()-MAX_LENGTH; i>0; i--){
             queue.removeFirst();
         }

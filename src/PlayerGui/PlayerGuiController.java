@@ -38,10 +38,10 @@ public class PlayerGuiController implements Initializable {
     public void addSong() {
         clearError();
         try {
-            PlayerGUI.player.addToQueue(new Song(new File(addSongField.getText())));
+            PlayerGUI.player.addToQueue(new Song(addSongField.getText()));
             addSongField.clear();
         } catch (Exception e) {
-            System.out.println("error");
+            displayError("Error adding song");
         }
     }
 
@@ -51,7 +51,6 @@ public class PlayerGuiController implements Initializable {
     public void play() {
         clearError();
         PlayerGUI.player.play();
-        System.out.println("play");
     }
 
     /**
@@ -60,7 +59,6 @@ public class PlayerGuiController implements Initializable {
     public void pause() {
         clearError();
         PlayerGUI.player.pause();
-        System.out.println("pause");
     }
 
     /**
@@ -69,7 +67,6 @@ public class PlayerGuiController implements Initializable {
     public void next() {
         clearError();
         PlayerGUI.player.playNext();
-        System.out.println("next");
     }
 
     /**
@@ -78,7 +75,6 @@ public class PlayerGuiController implements Initializable {
     public void previous() {
         clearError();
         PlayerGUI.player.playPrevious();
-        System.out.println("previous");
     }
 
     /**
@@ -87,7 +83,6 @@ public class PlayerGuiController implements Initializable {
     public void clearQueue() {
         clearError();
         PlayerGUI.player.clearQueue();
-        System.out.println("clear queue");
     }
 
     /**
@@ -97,7 +92,6 @@ public class PlayerGuiController implements Initializable {
     public void newPlaylist(ActionEvent a) {
         new PLEController().activate(a, new Playlist("New Playlist"));
         updateExistingPlaylists();
-        //clearError();
     }
 
     /**
@@ -106,14 +100,13 @@ public class PlayerGuiController implements Initializable {
     public void copyPlaylist() {
         clearError();
         try {
-            Playlist original = new Playlist(new File("/data/" + activePlaylistName + ".playlist"));
+            Playlist original = new Playlist(new File("./data/" + activePlaylistName + ".playlist"));
             Playlist copy = new Playlist(original);
-            copy.setName(copy.getName() + " - Copy");
             copy.save();
             updateExistingPlaylists();
         } catch (Exception e) {
-            //System.out.println("Error copying");
             displayError("Error copying playlist");
+            e.printStackTrace();
         }
     }
 
@@ -125,7 +118,6 @@ public class PlayerGuiController implements Initializable {
         clearError();
         try {
             Playlist p = new Playlist(new File("./data/" + activePlaylistName + ".playlist"));
-            System.out.println(p);
             new PLEController().activate(a, p);
         } catch (Exception e) {
             //System.out.println("Error opening editor");
@@ -165,6 +157,7 @@ public class PlayerGuiController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         updateExistingPlaylists();
+        this.activePlaylistName = playlistChoiceBox.getValue();
         playlistChoiceBox.setOnAction(this::updateActivePlaylist);
         clearError();
     }
@@ -175,6 +168,7 @@ public class PlayerGuiController implements Initializable {
      */
     public void updateActivePlaylist(ActionEvent a) {
         activePlaylistName = playlistChoiceBox.getValue();
+
     }
 
     /**
@@ -185,8 +179,9 @@ public class PlayerGuiController implements Initializable {
         File[] playlists = new File("./data").listFiles();
         playlistChoiceBox.getItems().clear();
         for (File f: playlists) {
-            playlistChoiceBox.getItems().add(f.getName().substring(0, f.getName().indexOf('.')));
+            playlistChoiceBox.getItems().add(f.getName().substring(0, f.getName().lastIndexOf('.')));
         }
+        playlistChoiceBox.setValue((playlists[0].getName()).substring(0,playlists[0].getName().lastIndexOf('.')));
     }
 
     /**

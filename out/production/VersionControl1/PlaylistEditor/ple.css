@@ -8,6 +8,10 @@
     -fx-font-size:12;
 }
 
+.button {
+    -fx-font-family:"Lucida Bright";
+}
+
 #nameFieldLabel {
     -fx-font-size:16;
 }

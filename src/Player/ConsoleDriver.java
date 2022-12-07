@@ -40,18 +40,43 @@ public class ConsoleDriver {
 
         while (true){
             System.out.println("Now playing: "+player.getSong().getName());
-            System.out.println("1. Previous");
-            System.out.println("2. Next");
-            System.out.println("3. Exit");
+            
+            if (player.hasPrevious()){
+                System.out.printf("1. << Previous (%s)\n",player.getPrevious().getLast().getName());
+            } else {
+                System.out.printf("1. << Previous");
+            }
+
+            if (player.getSong().isPlaying()){
+                System.out.println("2. Stop");
+            } else {
+                System.out.println("2. Play");
+            }
+
+            if (player.hasNext()){
+                System.out.printf("3. >> Next (%s)\n",player.getQueue().getFirst().getName());
+            } else {
+                System.out.printf("3. >> Next");
+            }
+            System.out.println("4. Exit");
             String option = s.next();
 
-            if (option.equals("1")){
+            if (option.equals("1") && player.hasPrevious()){
                 player.playPrevious();
             }
+
             else if (option.equals("2")){
+                if (player.getSong().isPlaying()){
+                    player.pause();
+                } else {
+                    player.play();
+                }
+            }
+
+            else if (option.equals("3") && player.hasNext()){
                 player.playNext();
             }
-            else if (option.equals("3")){
+            else if (option.equals("4")){
                 System.exit(0);
             }
         }

@@ -82,7 +82,7 @@ public class Song {
     /** Checks if the audio file is currently being played
      * @return true if the file is being played
      */
-    public boolean playing(){
+    public boolean isPlaying(){
         return clip.isPlaying();
     }
 

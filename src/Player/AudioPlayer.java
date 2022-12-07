@@ -1,14 +1,7 @@
 package Player;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.Clip;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.LinkedList;
-import javax.sound.sampled.AudioSystem;
 import static java.util.Collections.shuffle;
 
 
@@ -30,41 +23,47 @@ public class AudioPlayer {
     /** The maximum amount of songs allowed in the queue and previous songs */
     private static final int MAX_LENGTH = 50;
 
-    //things added
-    private String currentStatus;
-    Clip clip;
-    AudioInputStream aStr;
+    public AudioPlayer(){
+        queue = new LinkedList<>();
+        previousSongs = new LinkedList<>();
+    }
 
     /** Plays the current song starting at the saved timestamp */
     public void play(){
-        try {
-            aStr = AudioSystem.getAudioInputStream(new File(currentSong.getUriString()));
-            clip.open(aStr);
-            clip.start();
-        }
-        catch(Exception e){
-            System.out.println(e.getMessage());
-        }
+        currentSong.play();
     }
 
     /** Pauses the current song */
     public void pause(){
-        savedTime = clip.getMicrosecondPosition();
-        clip.stop();
-        currentStatus = "paused";
+        currentSong.stop();
     }
 
     /** Gets the next song from the queue and starts playing it */
     public void playNext(){
-        previousSongs.add(currentSong);
+        if (!hasNext()){ 
+            return;
+        }
+
+        if (currentSong != null){
+            currentSong.stop();
+            previousSongs.add(currentSong);
+        }
         currentSong = queue.pop();
         play();
     }
 
     /** Gets the last song played and starts playing it */
     public void playPrevious(){
-        queue.add(currentSong);
+        if (!hasPrevious()){ 
+            return;
+        }
+
+        if (currentSong != null){
+            currentSong.stop();
+            queue.add(currentSong);
+        }
         currentSong = previousSongs.pop();
+        play();
     }
 
     /** Removes all the songs from the queue */

@@ -3,7 +3,8 @@ package Player;
 import java.io.*;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Scanner;
 
 public class Playlist {
@@ -12,9 +13,9 @@ public class Playlist {
     private String name;
 
     /** A map of the songs (used to quickly check if a song already exists in the playlist) */
-    private HashMap<Song,Integer> songsMap;
+    private HashSet<Song> songsSet;
 
-    /** The list of songs in the playlist in normal play order */
+    /** The list of songs in the playlist in play order */
     private ArrayList<Song> songs;
 
     /** Loads a playlist from a playlist save file
@@ -26,6 +27,7 @@ public class Playlist {
         String fileName = source.getName();
         this.name = fileName.substring(0,fileName.lastIndexOf("."));
         this.songs = new ArrayList<>();
+        this.songsSet = new HashSet<>();
         try {
             Scanner s = new Scanner(source);
             while(s.hasNextLine()){
@@ -53,6 +55,7 @@ public class Playlist {
         }
 
         this.songs = new ArrayList<>();
+        this.songsSet = new HashSet<>();
     }
 
     /** Creates a new playlist with all the songs of the given playlist
@@ -73,13 +76,10 @@ public class Playlist {
         }
 
         //setting songs
-        this.songs = new ArrayList<>();
-        this.songs.addAll(p.songs);
+        songs = new ArrayList<>();
+        songsSet = new HashSet<>();
 
-        //setting songsMap
-        for(int j = 0; j<songs.size(); j++){
-            songsMap.put(songs.get(j),j);
-        }
+        addAll(p.songs);
     }
 
     /** Set the name of the playlist
@@ -95,16 +95,23 @@ public class Playlist {
      * @param s the song to add
      */
     public void add(Song s){
-        this.songs.add(s);
-        this.songsMap.put(s,songsMap.size());
+        if (songsSet.add(s)){
+            songs.add(s);
+        }
+    }
+
+    public void addAll(List<Song> songs){
+        for (Song s : songs){
+            add(s);
+        }
     }
 
     /** Removes a song from the playlist
      * @param s the song to remove
      */
     public void remove(Song s){
-        this.songs.remove(s);
-        this.songsMap.remove(s);
+        songs.remove(s);
+        songsSet.remove(s);
     }
 
     /** @return the name of the playlist */
